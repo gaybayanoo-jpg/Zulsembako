@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Sembako Berkah</title>
+<style>
+:root{--navy:#102a43;--blue:#1769aa;--sky:#eaf5ff;--gold:#ffca55;--ink:#183247;--muted:#64788a;--white:#fff;--shadow:0 16px 35px rgba(16,42,67,.13)}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eaf5ff,#f8fbff 55%,#e2f0ff);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 15% 20%,#3b91d1 0 3px,transparent 4px),radial-gradient(circle at 80% 75%,#ffca55 0 4px,transparent 5px),linear-gradient(135deg,#0b2540,#1769aa)}
+.login-card{width:min(420px,100%);padding:34px;border-radius:26px;background:#fff;box-shadow:0 25px 60px #06182b66;text-align:center;transform:perspective(900px) rotateX(2deg)}
+.logo{font-size:48px;filter:drop-shadow(0 8px 5px #102a4330)}.login-card h1{margin:8px 0;color:var(--navy)}.login-card p{color:var(--muted);line-height:1.5}
+.field{text-align:left;margin:16px 0}.field label{display:block;font-weight:bold;margin-bottom:7px}.field input{width:100%;padding:13px 14px;border:1px solid #c9d9e6;border-radius:12px;outline:none}.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769aa20}
+.primary{background:linear-gradient(135deg,#1769aa,#0e4778);color:white;padding:13px 18px;border-radius:12px;font-weight:bold;box-shadow:0 8px 18px #1769aa35}.login-card .primary{width:100%;margin-top:8px}.hint{font-size:12px;background:#eef7ff;padding:10px;border-radius:10px;margin-top:18px}
+#store{display:none}.topbar{background:linear-gradient(110deg,#0d2a45,#1769aa);color:#fff;padding:18px max(20px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 8px 22px #102a4328}.brand{display:flex;align-items:center;gap:12px}.brand .logo{font-size:35px}.brand h1{font-size:21px;margin:0}.brand small{opacity:.8}.top-actions{display:flex;gap:10px;align-items:center}.top-actions button{padding:10px 13px;border-radius:10px;background:#ffffff20;color:#fff}
+.hero{max-width:1180px;margin:30px auto 22px;padding:30px;border-radius:24px;background:linear-gradient(120deg,#164e7d,#2188c8);color:#fff;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;position:relative}.hero:after{content:"🛒";font-size:110px;opacity:.18;transform:rotate(-12deg);filter:drop-shadow(12px 15px 5px #09223a55)}.hero h2{font-size:clamp(25px,4vw,38px);margin:0 0 10px}.hero p{margin:0;line-height:1.6;max-width:580px}.container{max-width:1180px;margin:auto;padding:0 20px 45px}.toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:24px 0}.toolbar input{flex:1;min-width:220px;padding:13px 15px;border:1px solid #c9d9e6;border-radius:12px;background:#fff}.categories{display:flex;gap:8px;flex-wrap:wrap}.categories button{padding:11px 14px;border-radius:30px;background:#fff;color:var(--ink);box-shadow:0 4px 12px #102a4310}.categories button.active{background:var(--navy);color:#fff}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.product{background:#fff;border-radius:18px;padding:17px;box-shadow:var(--shadow);transition:.25s;transform-style:preserve-3d;border:1px solid #e6f0f8}.product:hover{transform:perspective(800px) rotateY(-3deg) translateY(-5px);box-shadow:0 22px 40px #102a4325}.product .emoji{height:105px;border-radius:14px;background:linear-gradient(145deg,#eff8ff,#dceeff);display:grid;place-items:center;font-size:55px;text-shadow:0 8px 8px #102a4325}.product h3{margin:13px 0 6px;font-size:17px}.product .desc{font-size:12px;color:var(--muted);min-height:28px}.price{font-size:18px;font-weight:800;color:#1264a2;margin:12px 0}.product button{width:100%;padding:11px;border-radius:10px;background:#e8f4ff;color:#10558b;font-weight:bold}.product button:hover{background:#1769aa;color:white}
+.cart{background:#fff;border-radius:18px;padding:19px;box-shadow:var(--shadow);position:sticky;top:16px}.cart h2{margin:0 0 14px;font-size:20px}.cart-empty{color:var(--muted);font-size:14px;padding:15px 0}.cart-item{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid #edf2f6;font-size:13px}.cart-item button{background:#ffe8e8;color:#a32b2b;border-radius:7px;padding:4px 7px}.total{display:flex;justify-content:space-between;font-weight:bold;font-size:18px;padding:16px 0}.checkout{width:100%;padding:13px;border-radius:11px;background:#1d9b68;color:#fff;font-weight:bold}.owner{margin-top:22px;background:#fff;border-radius:16px;padding:19px;box-shadow:var(--shadow);line-height:1.8}.owner h3{margin:0 0 8px}.owner a{color:#1264a2;font-weight:bold;text-decoration:none}.footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.cart{position:static}}@media(max-width:560px){.topbar{padding:15px;align-items:flex-start}.brand h1{font-size:17px}.top-actions{flex-direction:column;align-items:stretch}.hero{margin:18px 14px;padding:22px}.container{padding:0 14px 30px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.product{padding:11px}.product .emoji{height:85px;font-size:43px}.product h3{font-size:14px}.price{font-size:15px}.categories button{font-size:12px;padding:9px 11px}}
+</style>
+</head>
+<body>
+<section class="login-wrap" id="login">
+  <form class="login-card" onsubmit="loginUser(event)">
+    <div class="logo">🛍️</div><h1>Toko Sembako Berkah</h1>
+    <p>Silakan masuk untuk melihat katalog dan melakukan pemesanan.</p>
+    <div class="field"><label for="username">Username</label><input id="username" autocomplete="username" placeholder="Masukkan username" required></div>
+    <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Masukkan password" required></div>
+    <button class="primary" type="submit">Masuk ke Toko</button>
+    <div class="hint">Akun demo: <b>admin</b> &nbsp;|&nbsp; Password: <b>sembako123</b></div>
+  </form>
+</section>
+<div id="store">
+<header class="topbar"><div class="brand"><div class="logo">🛒</div><div><h1>Toko Sembako Berkah</h1><small>Hemat • Lengkap • Terpercaya</small></div></div><div class="top-actions"><span id="welcome">Selamat datang</span><button onclick="logout()">Keluar ↗</button></div></header>
+<section class="hero"><div><h2>Belanja Sembako Jadi Mudah!</h2><p>Temukan kebutuhan dapur harian dengan harga bersahabat. Pilih barang, masukkan ke keranjang, lalu hubungi penjual untuk konfirmasi pesanan.</p></div></section>
+<main class="container">
+  <div class="toolbar"><input id="search" type="search" placeholder="🔎 Cari beras, minyak, gula..." oninput="renderProducts()"><div class="categories" id="categories"></div></div>
+  <div class="layout"><section class="grid" id="products"></section><aside>
+    <div class="cart"><h2>🧺 Keranjang Belanja</h2><div id="cartItems" class="cart-empty">Keranjang masih kosong.</div><div class="total"><span>Total</span><span id="total">Rp0</span></div><button class="checkout" onclick="checkout()">Pesan via WhatsApp</button></div>
+    <div class="owner"><h3>📞 Kontak Pemilik</h3><div><b>Nama:</b> Pemilik zul sembako berkah</div><div><b>Telepon:</b> <a id="phoneLink" href="tel:08XXXXXXXXXX">08XX-XXXX-XXXX</a></div><small>Ganti nomor contoh ini dengan nomor WhatsApp/telepon penjual yang benar.</small></div>
+  </aside></div>
+</main><div class="footer">© 2026 Toko Sembako Berkah • Harga dapat berubah sewaktu-waktu.</div>
+</div>
+<script>
+const USERNAME="zulss", PASSWORD="2345";
+// Ubah nomor di bawah menjadi nomor WhatsApp penjual, gunakan kode negara 62 tanpa tanda +.
+const OWNER_PHONE="081354872695";
+const items=[
+ {name:"Beras Ramos",unit:"5 kg",price:74000,cat:"Bahan Pokok",emoji:"🍚",desc:"Beras pulen untuk kebutuhan keluarga"},
+ {name:"Beras Premium",unit:"5 kg",price:82000,cat:"Bahan Pokok",emoji:"🍚",desc:"Beras pilihan kualitas premium"},
+ {name:"Minyak Goreng",unit:"1 liter",price:18000,cat:"Bahan Pokok",emoji:"🫗",desc:"Minyak goreng kemasan"},
+ {name:"Gula Pasir",unit:"1 kg",price:17500,cat:"Bahan Pokok",emoji:"🍬",desc:"Gula pasir putih"},
+ {name:"Tepung Terigu",unit:"1 kg",price:13000,cat:"Bahan Pokok",emoji:"🌾",desc:"Tepung serbaguna"},
+ {name:"Telur Ayam",unit:"1 kg",price:30000,cat:"Protein",emoji:"🥚",desc:"Telur ayam segar"},
+ {name:"Mie Instan",unit:"1 bungkus",price:3500,cat:"Makanan",emoji:"🍜",desc:"Mie instan aneka rasa"},
+ {name:"Susu Kental Manis",unit:"kaleng",price:12500,cat:"Minuman",emoji:"🥛",desc:"Susu kental manis"},
+ {name:"Kopi Bubuk",unit:"100 gram",price:11000,cat:"Minuman",emoji:"☕",desc:"Kopi bubuk aroma nikmat"},
+ {name:"Teh Celup",unit:"1 kotak",price:9000,cat:"Minuman",emoji:"🍵",desc:"Teh celup untuk keluarga"},
+ {name:"Garam",unit:"500 gram",price:4000,cat:"Bumbu",emoji:"🧂",desc:"Garam dapur beryodium"},
+ {name:"Kecap Manis",unit:"225 ml",price:8500,cat:"Bumbu",emoji:"🍶",desc:"Pelengkap masakan"},
+ {name:"Sabun Mandi",unit:"1 batang",price:5000,cat:"Rumah Tangga",emoji:"🧼",desc:"Sabun mandi harian"},
+ {name:"Deterjen",unit:"1 kg",price:19000,cat:"Rumah Tangga",emoji:"🫧",desc:"Deterjen pakaian"}
+];
+let cart={}, activeCat="Semua";
+const rupiah=n=>"Rp"+n.toLocaleString("id-ID");
+function loginUser(e){e.preventDefault();const u=document.getElementById("username").value.trim(),p=document.getElementById("password").value;if(u===USERNAME&&p===PASSWORD){document.getElementById("login").style.display="none";document.getElementById("store").style.display="block";document.getElementById("welcome").textContent="Halo, "+u+"!";init()}else alert("Username atau password salah.");}
+function logout(){document.getElementById("store").style.display="none";document.getElementById("login").style.display="grid";document.getElementById("password").value="";cart={};updateCart()}
+function init(){document.getElementById("phoneLink").textContent=OWNER_PHONE==="081354872695"?"082261039305":OWNER_PHONE;document.getElementById("phoneLink").href="tel:"+OWNER_PHONE;renderCategories();renderProducts();updateCart()}
+function renderCategories(){let cats=["Semua",...new Set(items.map(x=>x.cat))];document.getElementById("categories").innerHTML=cats.map(c=>`<button class="${c===activeCat?'active':''}" onclick="activeCat='${c}';renderCategories();renderProducts()">${c}</button>`).join("")}
+function renderProducts(){let q=document.getElementById("search").value.toLowerCase();let data=items.map((x,i)=>({...x,i})).filter(x=>(activeCat==="Semua"||x.cat===activeCat)&&(x.name.toLowerCase().includes(q)||x.desc.toLowerCase().includes(q)));document.getElementById("products").innerHTML=data.length?data.map(x=>`<article class="product"><div class="emoji">${x.emoji}</div><h3>${x.name}</h3><div class="desc">${x.desc} • ${x.unit}</div><div class="price">${rupiah(x.price)}</div><button onclick="addCart(${x.i})">＋ Tambah ke Keranjang</button></article>`).join(""):"<p>Barang tidak ditemukan.</p>"}
+function addCart(i){cart[i]=(cart[i]||0)+1;updateCart()}
+function removeCart(i){delete cart[i];updateCart()}
+function updateCart(){let keys=Object.keys(cart),total=0;document.getElementById("cartItems").className=keys.length?"":"cart-empty";document.getElementById("cartItems").innerHTML=keys.length?keys.map(k=>{let x=items[k],sub=x.price*cart[k];total+=sub;return `<div class="cart-item"><span>${x.name}<br>${cart[k]} × ${rupiah(x.price)}</span><b>${rupiah(sub)} <button onclick="removeCart(${k})">×</button></b></div>`}).join(""):"Keranjang masih kosong.";document.getElementById("total").textContent=rupiah(total)}
+function checkout(){let keys=Object.keys(cart);if(!keys.length){alert("Tambahkan barang ke keranjang terlebih dahulu.");return}let total=0,lines=keys.map(k=>{let x=items[k],sub=x.price*cart[k];total+=sub;return `- ${x.name} (${cart[k]} ${x.unit}) = ${rupiah(sub)}`});let msg=`Halo Toko Sembako Berkah, saya ingin memesan:\n${lines.join("\n")}\nTotal: ${rupiah(total)}\nMohon konfirmasi pesanan saya.`;if(OWNER_PHONE==="628XXXXXXXXXX"){alert("Pemilik belum mengatur nomor WhatsApp. Silakan ganti OWNER_PHONE di dalam kode HTML.");return}window.open("https://wa.me/"+OWNER_PHONE+"?text="+encodeURIComponent(msg),"_blank")}
+</script>
+</body></html>
